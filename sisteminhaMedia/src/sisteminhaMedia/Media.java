@@ -6,6 +6,7 @@ public class Media {
 
 	public static void main(String[] args) {
 
+		JOptionPane.showMessageDialog(null, "Olá!!");
 		double nota1 = Double.parseDouble(JOptionPane.showInputDialog("Informe a nota 1 "));
 		double nota2 = Double.parseDouble(JOptionPane.showInputDialog("Informe a nota 2 "));
 		double nota3 = Double.parseDouble(JOptionPane.showInputDialog("Informe a nota 3 "));
