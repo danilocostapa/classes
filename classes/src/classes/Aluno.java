@@ -13,7 +13,7 @@ public class Aluno {
 	private String dataMatricula;
 	private String nomeEscola;
 	private String serieMatriculado;
-	
+
 	private double nota1;
 	private double nota2;
 	private double nota3;
@@ -26,7 +26,7 @@ public class Aluno {
 
 	/* Construtor com argumentos */
 	public Aluno(String nome, int idade, String dataNascimento, String registroGeral, String numeroCpf, String nomeMae,
-			String nomePai, String dataMatricula, String nomeEscola, String serieMatriculado) {
+			String nomePai, String dataMatricula, String nomeEscola, String serieMatriculado, double nota1, double nota2, double nota3, double nota4) {
 		this.nome = nome;
 		this.idade = idade;
 		this.dataNascimento = dataNascimento;
@@ -37,6 +37,10 @@ public class Aluno {
 		this.dataMatricula = dataMatricula;
 		this.nomeEscola = nomeEscola;
 		this.serieMatriculado = serieMatriculado;
+		this.nota1 = nota1;
+		this.nota2 = nota2;
+		this.nota3 = nota3;
+		this.nota4 = nota4;
 	}
 
 	/*
@@ -156,11 +160,44 @@ public class Aluno {
 		this.nota4 = nota4;
 	}
 
-	
-	/*métodos*/
-	/*Retorna a média do Aluno*/
+	/* métodos */
+	/* Retorna a média do Aluno */
 	public double getMediaNota() {
-		return (nota1 + nota2 + nota3 + nota4) / 4;
+		double media = (nota1 + nota2 + nota3 + nota4) / 4;
+		return media;
 	}
+	
+	/*método para saber se ta aprovado ou não*/
+	public boolean getAlunoAprovado() {
+		double media = this.getMediaNota();//atribuindo ao valor da média o resultado do método
+		
+		if(media >= 70) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public String getAlunoAprovado2() {
+		double media = this.getMediaNota();
+		
+		if(media >= 70) {
+			return "Aluno está aprovado";
+		}
+		else {
+			return "Aluno está reprovado";
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "Aluno: \nNome: " + getNome() + ", \nIdade: " + getIdade() + ", \nData de Nascimento: " + getDataNascimento() + ", \nRegistro Geral: "
+				+ getRegistroGeral() + ", \nNumero do Cpf: " + getNumeroCpf() + ", \nNome da Mãe: " + getNomeMae() + ", \nNome do Pai: " + getNomePai()
+				+ ", \nData Matricula: " + getDataMatricula() + ", \nNome da Escola: " + getNomeEscola() + ", \nSerie Matriculado: "
+				+ getSerieMatriculado() + ", \nNota 1: " + getNota1() + ", \nNota 2: " + getNota2() + ", \nNota 3: " + getNota3() + ", \nNota 4: " + getNota4();
+	}
+	
+	
 
 }
