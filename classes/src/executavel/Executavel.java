@@ -1,10 +1,9 @@
 package executavel;
 
-import java.util.Dictionary;
-
 import javax.swing.JOptionPane;
 
 import classes.Aluno;
+import classes.Disciplina;
 
 public class Executavel {
 	public static void main(String[] args) {
@@ -20,18 +19,6 @@ public class Executavel {
 		String nomeEscola = JOptionPane.showInputDialog("Qual o nome da Escola?");
 		String serieMatriculado = JOptionPane.showInputDialog("Qual série o aluno faz?");
 
-		String disciplina1 = JOptionPane.showInputDialog("Qual a disciplina 1?");
-		double nota1 = Double.parseDouble(JOptionPane.showInputDialog("Nota da disciplina " + disciplina1));
-
-		String disciplina2 = JOptionPane.showInputDialog("Qual a disciplina 2?");
-		double nota2 = Double.parseDouble(JOptionPane.showInputDialog("Nota da disciplina " + disciplina2));
-
-		String disciplina3 = JOptionPane.showInputDialog("Qual a disciplina 3?");
-		double nota3 = Double.parseDouble(JOptionPane.showInputDialog("Nota da disciplina " + disciplina3));
-
-		String disciplina4 = JOptionPane.showInputDialog("Qual a disciplina 4?");
-		double nota4 = Double.parseDouble(JOptionPane.showInputDialog("Nota da disciplina " + disciplina4));
-
 		Aluno aluno1 = new Aluno();
 
 		aluno1.setNome(nome);
@@ -45,17 +32,17 @@ public class Executavel {
 		aluno1.setNomeEscola(nomeEscola);
 		aluno1.setSerieMatriculado(serieMatriculado);
 
-		aluno1.getDisciplina().setNota1(nota1);
-		aluno1.getDisciplina().setNota2(nota2);
-		aluno1.getDisciplina().setNota3(nota3);
-		aluno1.getDisciplina().setNota4(nota4);
-		
-		aluno1.getDisciplina().setDisciplina1(disciplina1);
-		aluno1.getDisciplina().setDisciplina2(disciplina2);
-		aluno1.getDisciplina().setDisciplina3(disciplina3);
-		aluno1.getDisciplina().setDisciplina4(disciplina4);
-
-		
+		/*setando disciplinas no sistema*/
+		for(int pos = 1; pos <= 4; pos++) {
+			String nomeDisciplina = JOptionPane.showInputDialog("Nome da "+ pos +"ª Disciplina");
+			double notaDisciplina = Double.parseDouble(JOptionPane.showInputDialog("Nota da " +pos+ "ª Disciplina"));
+			Disciplina disciplina = new Disciplina();
+			
+			disciplina.setDisciplina(nomeDisciplina);
+			disciplina.setNota(notaDisciplina);
+			
+			aluno1.getDisciplinas().add(disciplina);
+		}
 
 		System.out.println(aluno1);
 

@@ -1,5 +1,8 @@
 package classes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Aluno {
 
 	/* Atributos */
@@ -14,7 +17,7 @@ public class Aluno {
 	private String nomeEscola;
 	private String serieMatriculado;
 	
-	private Disciplina disciplina = new Disciplina(); //relacionando a disciplina com o  aluno
+	private List<Disciplina> disciplinas = new ArrayList<Disciplina>(); //relacionando a disciplina com o  aluno
 
 	
 
@@ -124,21 +127,24 @@ public class Aluno {
 		this.serieMatriculado = serieMatriculado;
 	}
 	
-	public void setDisciplina(Disciplina disciplina) {
-		this.disciplina = disciplina;
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
 	}
 	
-	public Disciplina getDisciplina() {
-		return disciplina;
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
 	}
-
 	
-
 	/* métodos */
 	/* Retorna a média do Aluno */
+	double somaNotas = 0.0;
 	public double getMediaNota() {
-		double media = (disciplina.getNota1() + disciplina.getNota2() + disciplina.getNota3() + disciplina.getNota4()) / 4;
-		return media;
+		/*for para varrer a lista e fazer a soma das notas*/
+		for (Disciplina disciplina : disciplinas) { /*Aponto a classe, crio uma variável e aponto para a lista*/
+			somaNotas += disciplina.getNota();
+		}
+		
+		return somaNotas / disciplinas.size();
 	}
 
 	/* método para saber se ta aprovado ou não */
@@ -168,7 +174,7 @@ public class Aluno {
 				+ getDataNascimento() + " \nRegistro Geral: " + getRegistroGeral() + " \nNumero do Cpf: "
 				+ getNumeroCpf() + " \nNome da Mãe: " + getNomeMae() + " \nNome do Pai: " + getNomePai()
 				+ " \nData Matricula: " + getDataMatricula() + " \nNome da Escola: " + getNomeEscola()
-				+ " \nSerie Matriculado: " + getSerieMatriculado() + "\nDisciplinas: " + getDisciplina();
+				+ " \nSerie Matriculado: " + getSerieMatriculado();
 	}
 
 	@Override
