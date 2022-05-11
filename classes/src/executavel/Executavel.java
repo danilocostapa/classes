@@ -9,7 +9,7 @@ public class Executavel {
 	public static void main(String[] args) {
 
 		String nome = JOptionPane.showInputDialog("Qual o nome do aluno?");
-		int idade = Integer.parseInt(JOptionPane.showInputDialog("Qual a idade do aluno?"));
+		/*int idade = Integer.parseInt(JOptionPane.showInputDialog("Qual a idade do aluno?"));
 		String dataNascimento = JOptionPane.showInputDialog("Data de Nascimento: dd/MM/yyyy");
 		String rg = JOptionPane.showInputDialog("Registro Geral:");
 		String cpf = JOptionPane.showInputDialog("CPF do aluno: ");
@@ -17,12 +17,12 @@ public class Executavel {
 		String nomePai = JOptionPane.showInputDialog("Informe o nome do pai");
 		String dataMatricula = JOptionPane.showInputDialog("Qual a data da Matricula? dd/MM/yyyy");
 		String nomeEscola = JOptionPane.showInputDialog("Qual o nome da Escola?");
-		String serieMatriculado = JOptionPane.showInputDialog("Qual série o aluno faz?");
+		String serieMatriculado = JOptionPane.showInputDialog("Qual série o aluno faz?");*/
 
 		Aluno aluno1 = new Aluno();
 
 		aluno1.setNome(nome);
-		aluno1.setIdade(idade);
+		/*aluno1.setIdade(idade);
 		aluno1.setDataNascimento(dataNascimento);
 		aluno1.setRegistroGeral(rg);
 		aluno1.setNumeroCpf(cpf);
@@ -30,7 +30,7 @@ public class Executavel {
 		aluno1.setNomePai(nomePai);
 		aluno1.setDataMatricula(dataMatricula);
 		aluno1.setNomeEscola(nomeEscola);
-		aluno1.setSerieMatriculado(serieMatriculado);
+		aluno1.setSerieMatriculado(serieMatriculado);*/
 
 		/*setando disciplinas no sistema*/
 		for(int pos = 1; pos <= 4; pos++) {
@@ -43,11 +43,22 @@ public class Executavel {
 			
 			aluno1.getDisciplinas().add(disciplina);
 		}
-
+		
+		int escolha = JOptionPane.showConfirmDialog(null, "Deseja remover alguma disciplina?");
+		
+		if(escolha == 0) {
+			int disciplinaRemover = Integer.parseInt(JOptionPane.showInputDialog("Qual a disciplina?" +
+					"\n1." + 
+					"\n2." +
+					"\n3." +
+					"\n4."));
+			
+			aluno1.getDisciplinas().remove(disciplinaRemover - 1);
+		}
+		
 		System.out.println(aluno1);
-
 		System.out.println("Média do Aluno: " + aluno1.getMediaNota() + "" + "\nResultado: "
-				+ (aluno1.getAlunoAprovado() ? "Aprovado" : "Reprovado")); // operador ternário
+				+ (aluno1.getAlunoAprovado2()));
 
 	}
 }

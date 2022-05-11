@@ -16,30 +16,12 @@ public class Aluno {
 	private String dataMatricula;
 	private String nomeEscola;
 	private String serieMatriculado;
-	
-	private List<Disciplina> disciplinas = new ArrayList<Disciplina>(); //relacionando a disciplina com o  aluno
 
-	
+	private List<Disciplina> disciplinas = new ArrayList<Disciplina>(); // relacionando a disciplina com o aluno
 
 	/* Método construtor padrão */
 	public Aluno() {
 
-	}
-
-	/* Construtor com argumentos */
-	public Aluno(String nome, int idade, String dataNascimento, String registroGeral, String numeroCpf, String nomeMae,
-			String nomePai, String dataMatricula, String nomeEscola, String serieMatriculado) {
-		this.nome = nome;
-		this.idade = idade;
-		this.dataNascimento = dataNascimento;
-		this.registroGeral = registroGeral;
-		this.numeroCpf = numeroCpf;
-		this.nomeMae = nomeMae;
-		this.nomePai = nomePai;
-		this.dataMatricula = dataMatricula;
-		this.nomeEscola = nomeEscola;
-		this.serieMatriculado = serieMatriculado;
-		
 	}
 
 	/*
@@ -126,29 +108,30 @@ public class Aluno {
 	public void setSerieMatriculado(String serieMatriculado) {
 		this.serieMatriculado = serieMatriculado;
 	}
-	
+
 	public void setDisciplinas(List<Disciplina> disciplinas) {
 		this.disciplinas = disciplinas;
 	}
-	
+
 	public List<Disciplina> getDisciplinas() {
 		return disciplinas;
 	}
-	
+
 	/* métodos */
 	/* Retorna a média do Aluno */
 	double somaNotas = 0.0;
+
 	public double getMediaNota() {
-		/*for para varrer a lista e fazer a soma das notas*/
-		for (Disciplina disciplina : disciplinas) { /*Aponto a classe, crio uma variável e aponto para a lista*/
+		/* for para varrer a lista e fazer a soma das notas */
+		for (Disciplina disciplina : disciplinas) { /* Aponto a classe, crio uma variável e aponto para a lista */
 			somaNotas += disciplina.getNota();
 		}
-		
+
 		return somaNotas / disciplinas.size();
 	}
 
 	/* método para saber se ta aprovado ou não */
-	public boolean getAlunoAprovado() {
+	/*public boolean getAlunoAprovado() {
 		double media = this.getMediaNota();// atribuindo ao valor da média o resultado do método
 
 		if (media >= 70) {
@@ -156,15 +139,19 @@ public class Aluno {
 		} else {
 			return false;
 		}
-	}
+	}*/
 
 	public String getAlunoAprovado2() {
 		double media = this.getMediaNota();
 
-		if (media >= 70) {
-			return "Aluno está aprovado";
+		if (media >= 50) {
+			if (media >= 70) {
+				return "Aluno aprovado!";
+			} else {
+				return "Aluno em recuperação!";
+			}
 		} else {
-			return "Aluno está reprovado";
+			return "Aluno reprovado!";
 		}
 	}
 
