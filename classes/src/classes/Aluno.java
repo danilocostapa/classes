@@ -119,10 +119,10 @@ public class Aluno {
 
 	/* métodos */
 	/* Retorna a média do Aluno */
-	double somaNotas = 0.0;
 
 	public double getMediaNota() {
 		/* for para varrer a lista e fazer a soma das notas */
+		double somaNotas = 0.0;
 		for (Disciplina disciplina : disciplinas) { /* Aponto a classe, crio uma variável e aponto para a lista */
 			somaNotas += disciplina.getNota();
 		}
