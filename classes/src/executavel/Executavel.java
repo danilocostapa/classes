@@ -14,8 +14,9 @@ public class Executavel {
 		
 		/*Criando uma lista de Alunos*/
 		List<Aluno> alunos = new ArrayList<Aluno>();
+		int numAluno = Integer.parseInt(JOptionPane.showInputDialog("Quantos alunos irá Cadastrar notas?"));
 		
-		for(int quantidade = 1; quantidade <= 2; quantidade++) {
+		for(int quantidade = 1; quantidade <= numAluno; quantidade++) {
 			
 			String nome = JOptionPane.showInputDialog("Qual o nome do " +quantidade+ "º aluno?");
 		/*
@@ -44,8 +45,10 @@ public class Executavel {
 		 */
 
 		Disciplina disciplina = null;
+		int numDisciplina = Integer.parseInt(JOptionPane.showInputDialog("Quantas disciplinas deseja cadastrar?"));
+		
 		/* setando disciplinas no sistema */
-		for (int pos = 1; pos <= 4; pos++) {
+		for (int pos = 1; pos <= numDisciplina; pos++) {
 			String nomeDisciplina = JOptionPane.showInputDialog("Nome da " + pos + "ª Disciplina");
 			double notaDisciplina = Double.parseDouble(JOptionPane.showInputDialog("Nota da " + pos + "ª Disciplina"));
 			disciplina = new Disciplina();
@@ -75,7 +78,39 @@ public class Executavel {
 		alunos.add(aluno1);//adicionando o aluno na lista
 		}
 		
-		for (Aluno aluno : alunos) {
+		/*for para percorrer por posição*/
+		for(int pos = 0; pos < alunos.size(); pos ++) {
+			
+			Aluno aluno = alunos.get(pos);
+			
+			if(aluno.getNome().equalsIgnoreCase("danilo")) {
+				Aluno trocar = new Aluno();
+				trocar.setNome("Aluno foi trocado");
+				
+				Disciplina disciplina = new Disciplina();
+				disciplina.setDisciplina("Matemática");
+				disciplina.setNota(96);
+				
+				trocar.getDisciplinas().add(disciplina);
+				
+				alunos.set(pos, trocar); //trocando na lista - na posição o objeto pelo novo
+				aluno = alunos.get(pos);
+			}
+			
+			System.out.println("Aluno: " + aluno.getNome());
+			System.out.println("Média: " + aluno.getMediaNota());
+			System.out.println("Resultado: " + aluno.getAlunoAprovado2());
+			System.out.println(" ");
+			
+			
+			for (int posD = 0; posD < aluno.getDisciplinas().size(); posD ++) {
+				Disciplina disc = aluno.getDisciplinas().get(posD);
+				
+				System.out.println("Disciplina do aluno: " + disc.getDisciplina() + "\nNota: " + disc.getNota());
+				System.out.println("------------------------------------");
+			}
+		}
+		/*for (Aluno aluno : alunos) {
 			
 			if(aluno.getNome().equalsIgnoreCase("danilo")) {//procurando um aluno pelo nome na lista
 				
@@ -97,6 +132,6 @@ public class Executavel {
 			for (Disciplina disciplina : aluno.getDisciplinas()) {
 				System.out.println(disciplina.getDisciplina());
 			}
-		}
+		}*/
 	}
 }
