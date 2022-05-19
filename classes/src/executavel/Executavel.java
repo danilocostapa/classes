@@ -1,12 +1,15 @@
 package executavel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import javax.net.ssl.SSLEngineResult.Status;
 import javax.swing.JOptionPane;
 
 import classes.Aluno;
 import classes.Disciplina;
+import constantes.StatusAluno;
 
 public class Executavel {
 	public static void main(String[] args) {
@@ -14,6 +17,15 @@ public class Executavel {
 		
 		/*Criando uma lista de Alunos*/
 		List<Aluno> alunos = new ArrayList<Aluno>();
+		
+		/*lista que dentro dela temos uma chave que identifica uma sequencia de valores*/
+		HashMap<String, List<Aluno>> maps = new HashMap<String, List<Aluno>>();
+		
+		/*List<Aluno> alunosAprovados = new ArrayList<Aluno>();
+		List<Aluno> alunosRecuperacao = new ArrayList<Aluno>();
+		List<Aluno> alunosReprovados = new ArrayList<Aluno>();*/
+		
+		
 		int numAluno = Integer.parseInt(JOptionPane.showInputDialog("Quantos alunos irá Cadastrar notas?"));
 		
 		for(int quantidade = 1; quantidade <= numAluno; quantidade++) {
@@ -78,7 +90,45 @@ public class Executavel {
 		alunos.add(aluno1);//adicionando o aluno na lista
 		}
 		
-		/*for para percorrer por posição*/
+		maps.put(StatusAluno.APROVADO, new ArrayList<Aluno>());
+		maps.put(StatusAluno.RECUPERACAO, new ArrayList<Aluno>());
+		maps.put(StatusAluno.REPROVADO, new ArrayList<Aluno>());
+		/*processar listas*/
+		for (Aluno aluno : alunos) {
+			if(aluno.getAlunoAprovado2().equalsIgnoreCase(StatusAluno.APROVADO)) {
+				//alunosAprovados.add(aluno);
+				maps.get(StatusAluno.APROVADO).add(aluno);
+			}
+			else if(aluno.getAlunoAprovado2().equalsIgnoreCase(StatusAluno.RECUPERACAO)) {
+				//alunosRecuperacao.add(aluno);
+				maps.get(StatusAluno.RECUPERACAO).add(aluno);
+			}
+			else {
+				//alunosReprovados.add(aluno);
+				maps.get(StatusAluno.REPROVADO).add(aluno);
+			}
+		}
+		
+		System.out.println(">>>>> Lista dos Alunos Aprovados <<<<<");
+		for (Aluno aluno : /*alunosAprovados*/maps.get(StatusAluno.APROVADO)) {
+			System.out.println("Aluno: " + aluno.getNome() + " Resultado: " + aluno.getAlunoAprovado2() + "\nMédia: " + aluno.getMediaNota());
+			System.out.println("---------------------------");
+		}
+		
+		System.out.println(">>>>> Lista dos Alunos Aprovados <<<<<");
+		for(Aluno aluno : /*alunosRecuperacao*/maps.get(StatusAluno.RECUPERACAO)) {
+			System.out.println("Aluno: " + aluno.getNome() + " Resultado: " + aluno.getAlunoAprovado2() + "\nMédia: " + aluno.getMediaNota());
+			System.out.println("---------------------------");
+		}
+		
+		System.out.println(">>>>> Lista dos Alunos Aprovados <<<<<");
+		for(Aluno aluno : /*alunosReprovados*/maps.get(StatusAluno.REPROVADO)) {
+			System.out.println("Aluno: " + aluno.getNome() + " Resultado: " + aluno.getAlunoAprovado2() + "Média: " + aluno.getMediaNota());
+			System.out.println("---------------------------");
+		}
+		
+		
+		/*for para percorrer por posição
 		for(int pos = 0; pos < alunos.size(); pos ++) {
 			
 			Aluno aluno = alunos.get(pos);
