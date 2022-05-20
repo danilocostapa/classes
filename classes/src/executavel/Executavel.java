@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.net.ssl.SSLEngineResult.Status;
 import javax.swing.JOptionPane;
 
 import classes.Aluno;
@@ -13,7 +12,11 @@ import constantes.StatusAluno;
 
 public class Executavel {
 	public static void main(String[] args) {
-
+		
+		String login = JOptionPane.showInputDialog("Login");
+		String senha = JOptionPane.showInputDialog("Senha");
+		
+		if(login.equalsIgnoreCase("danilo") && senha.equalsIgnoreCase("1234")) {
 		
 		/*Criando uma lista de Alunos*/
 		List<Aluno> alunos = new ArrayList<Aluno>();
@@ -183,5 +186,8 @@ public class Executavel {
 				System.out.println(disciplina.getDisciplina());
 			}
 		}*/
+		}else {
+			JOptionPane.showMessageDialog(null, "Login ou senha incorretos! \nPor favor tente novamente!");
+		}
 	}
 }
